@@ -1,0 +1,56 @@
+/* Table.css */
+
+/* Optional: Add styles for the container div */
+div {
+  margin: 20px;
+}
+.search-container {
+  height: auto;
+  /* width: 500px; */
+  float: right;
+}
+.search-input {
+  width: 30vw;
+  padding: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #263857;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #7e98ba;
+}
+
+th {
+  color: #263857;
+}
+
+button {
+  margin-right: 5px;
+}
+.popover-content {
+  height: 50px;
+  width: auto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  border: 1px solid #263857;
+  background-color: white;
+}
+.popover-trigger {
+  background-color: transparent;
+  border: none;
+}
+.crud {
+  background-color: transparent;
+  border: none;
+  display: flex;
+}
