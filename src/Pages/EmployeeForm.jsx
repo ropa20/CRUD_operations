@@ -3,6 +3,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import "./EmployeeForm.css";
 
 const EmployeeForm = ({ history }) => {
@@ -108,7 +110,7 @@ const EmployeeForm = ({ history }) => {
         onSubmit={handleSubmit}
         enableReinitialize
       >
-        {({ isSubmitting, isValid }) => (
+        {({ isSubmitting, isValid, values, setFieldValue }) => (
           <Form className="form">
             <div className="form-group">
               <label htmlFor="FirstName">First Name:</label>
@@ -202,12 +204,20 @@ const EmployeeForm = ({ history }) => {
             </div>
             <div className="form-group">
               <label htmlFor="Description">Description:</label>
-              <Field
+              <ReactQuill
                 className="form-input"
-                as="textarea"
                 id="description"
                 name="Description"
-                disabled={!isEditing && id}
+                value={values.Description}
+                onChange={(value) => setFieldValue("Description", value)}
+                readOnly={!isEditing && id}
+                modules={{
+                  toolbar: [
+                    [{ header: [1, 2, false] }],
+                    ["bold", "italic", "underline"],
+                    ["link", "image", "video"],
+                  ],
+                }}
               />
               <ErrorMessage
                 name="Description"

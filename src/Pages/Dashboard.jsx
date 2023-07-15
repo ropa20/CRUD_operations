@@ -50,9 +50,7 @@ const Dashboard = () => {
   };
 
   function htmlToText(html) {
-    const element = document.createElement("div");
-    element.innerHTML = html;
-    return element.textContent || element.innerText;
+    return <div dangerouslySetInnerHTML={{ __html: html }} />;
   }
 
   const handleSearch = (e) => {
