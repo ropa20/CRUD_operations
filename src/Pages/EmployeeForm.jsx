@@ -68,8 +68,10 @@ const EmployeeForm = ({ history }) => {
       FirstName: values?.FirstName,
       LastName: values?.LastName,
       DOB: values?.DOB,
+      Study: values?.Study,
       StartDate: values?.StartDate,
       EndDate: values?.EndDate,
+      CurrentSalary: values?.CurrentSalary,
       Description: values?.Description,
     };
 
