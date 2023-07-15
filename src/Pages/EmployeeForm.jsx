@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams, withRouter } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
@@ -8,7 +8,7 @@ import "./EmployeeForm.css";
 const EmployeeForm = ({ history }) => {
   const { id } = useParams();
   const location = useLocation();
-
+  const navigate = useNavigate();
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [initialValues, setInitialValues] = useState({
@@ -88,22 +88,13 @@ const EmployeeForm = ({ history }) => {
           "https://sweede.app/DeliveryBoy/Add-Employee/",
           values
         );
+        navigate("/");
       } catch (error) {
         console.error("Error adding data:", error);
       }
     }
 
     setIsEditing(false);
-
-    // Redirect to the table page after form submission
-    history.push("/");
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
-
-    // Redirect to the table page when cancel button is clicked
-    history.push("/");
   };
 
   return (
@@ -228,7 +219,14 @@ const EmployeeForm = ({ history }) => {
                   <button type="submit" disabled={isSubmitting || !isValid}>
                     Update
                   </button>
-                  <Link to={`/`}>Cancel</Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsEditing(false);
+                    }}
+                  >
+                    Cancel
+                  </button>
                 </>
               ) : (
                 <button type="button" onClick={handleEdit}>
